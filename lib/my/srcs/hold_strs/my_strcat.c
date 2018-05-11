@@ -1,0 +1,24 @@
+/*
+** my_strcat.c for emacs in /home/delphine.godet/PSU_2016_my_printf/srcs/hold_strs
+** 
+** Made by delphine godet
+** Login   <delphine.godet@epitech.net>
+** 
+** Started on  Sat Nov 19 01:07:55 2016 delphine godet
+** Last update Tue Jan 31 18:46:09 2017 delphine godet
+*/
+
+#include "my.h"
+
+char		*my_strcat(char *dest, char *src)
+{
+  size_t	i;
+  size_t	j;
+
+  i = 0;
+  j = my_strlen(dest);
+  while (src[i] != '\0')
+    dest[j++] = src[i++];
+  dest[j] = '\0';
+  return (dest);
+}
