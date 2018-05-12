@@ -1,45 +1,34 @@
 ##
-## Makefile for dante in /home/yami/dante/generator
-## 
-## Made by yami
-## Login   <yami>
-## 
-## Started on  Thu May 11 05:23:27 2017 yami
-## Last update Thu May 11 18:00:12 2017 yami
+## EPITECH PROJECT, 2018
+## Makefile
+## File description:
+## build something
 ##
 
-SRCS	=	srcs/arguments_manager.c	\
-		srcs/binary_tree_algo.c		\
-		srcs/error_manager.c		\
-		srcs/fct_ptrs.c			\
-		srcs/generate_cells_ne.c	\
-		srcs/generate_cells_nw.c	\
-		srcs/generate_cells_se.c	\
-		srcs/generate_cells_sw.c	\
-		srcs/generate_maze.c		\
-		srcs/imperfect_mazes.c		\
-		srcs/init_cells.c		\
-		srcs/printing.c			\
-		srcs/save_maze.c		\
-		srcs/main.c
+SRCDOS=		./src/
 
-OBJS	=	$(SRCS:.c=.o)
+SRC=		$(SRCDOS)binary_tree.c		\
+		$(SRCDOS)main.c			\
+		$(SRCDOS)maze.c			\
+		$(SRCDOS)maze_generator.c	\
+		$(SRCDOS)maze_transform.c	\
+		$(SRCDOS)prepare_maze.c
 
-NAME	=	generator
+OBJ=	$(SRC:.c=.o)
 
-CFLAGS	+=	-Wall -Wextra -Werror -Iinclude/ -I../include/
+CFLAGS=	-Wall -Wextra -W -Iinclude
 
-LDFLAGS	=	-L../lib/my/ -lmy
+NAME=	generator
 
-all:		$(NAME)
+all:	$(NAME)
 
-$(NAME):	$(OBJS)
-		$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+$(NAME):	$(OBJ)
+		gcc -o $(NAME) $(OBJ) $(LDFLAGS)
 
 clean:
-		$(RM) $(OBJS)
+	rm -f $(OBJ)
 
-fclean:		clean
-		$(RM) $(NAME)
+fclean:	clean
+	rm -f $(NAME)
 
-re:		fclean all
+re:	fclean all

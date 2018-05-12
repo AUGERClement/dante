@@ -19,7 +19,7 @@ FLAGS=		-L. lib/my/libmy.a -lm
 
 CFLAGS +=	-I$(HEADER_DIR)
 
-NAME=		tournament
+NAME=		solver
 
 all:		$(NAME)
 
