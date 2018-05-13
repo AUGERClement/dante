@@ -9,13 +9,12 @@ SRC_DIR=	$(realpath src/)
 
 HEADER_DIR=	$(realpath include/)
 
-LIB_DIR=	$(realpath lib/my/)
-
-SRC=		$(SRC_DIR)/main.c
+SRC=		$(SRC_DIR)/main.c \
+		$(SRC_DIR)/solver.c \
+		$(SRC_DIR)/get_next_line.c \
+		$(SRC_DIR)/free_ptr.c
 
 OBJ=		$(SRC:.c=.o)
-
-FLAGS=		-L. lib/my/libmy.a -lm
 
 CFLAGS +=	-I$(HEADER_DIR)
 
@@ -24,8 +23,7 @@ NAME=		solver
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		$(MAKE) -C $(LIB_DIR)
-		gcc -o $(NAME) $(OBJ) $(FLAGS) -I$(HEADER_DIR)
+		gcc -o $(NAME) $(OBJ) -I$(HEADER_DIR)
 
 clean:
 		@rm -f $(OBJ)
@@ -40,5 +38,4 @@ re:		fclean all
 .PHONY:		all clean fclean re
 
 debug:		$(OBJ)
-		$(MAKE) -C $(LIB_DIR)
 		make re CC="gcc -g3"

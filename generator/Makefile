@@ -1,34 +1,42 @@
 ##
-## EPITECH PROJECT, 2018
+## EPITECH PROJECT, 2017
 ## Makefile
 ## File description:
-## build something
+## Makefile
 ##
 
-SRCDOS=		./src/
+SRC_DIR=	$(realpath src/)
 
-SRC=		$(SRCDOS)binary_tree.c		\
-		$(SRCDOS)main.c			\
-		$(SRCDOS)maze.c			\
-		$(SRCDOS)maze_generator.c	\
-		$(SRCDOS)maze_transform.c	\
-		$(SRCDOS)prepare_maze.c
+HEADER_DIR=	$(realpath include/)
 
-OBJ=	$(SRC:.c=.o)
+SRC=		$(SRC_DIR)/main.c \
+		$(SRC_DIR)/binary_tree.c \
+		$(SRC_DIR)/maze.c \
+		$(SRC_DIR)/maze_generator.c \
+		$(SRC_DIR)/prepare_maze.c \
+		$(SRC_DIR)/maze_transform.c
 
-CFLAGS=	-Wall -Wextra -W -Iinclude
+OBJ=		$(SRC:.c=.o)
 
-NAME=	generator
+CFLAGS +=	-I$(HEADER_DIR)
 
-all:	$(NAME)
+NAME=		generator
+
+all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		gcc -o $(NAME) $(OBJ) $(LDFLAGS)
+		gcc -o $(NAME) $(OBJ) -I$(HEADER_DIR)
 
 clean:
-	rm -f $(OBJ)
+		@rm -f $(OBJ)
+		@find . -name "*~" -delete
 
-fclean:	clean
-	rm -f $(NAME)
+fclean:		clean
+		@rm -f $(NAME)
 
-re:	fclean all
+re:		fclean all
+
+.PHONY:		all clean fclean re
+
+debug:		$(OBJ)
+		make re CC="gcc -g3"

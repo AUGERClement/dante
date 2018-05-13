@@ -12,13 +12,13 @@ static char **malloc_maze(int x, int y)
 {
 	int i = 0;
 	int j = 0;
-	char **maze = malloc(sizeof (char *) * (y + 1));
+	char **maze = malloc(sizeof(char *) * (y + 1));
 
 	if (maze == NULL)
-		exit (84);
+		exit(84);
 	maze[y] = NULL;
 	while (i < y) {
-		maze[i] = malloc(sizeof (char) * (x + 1));
+		maze[i] = malloc(sizeof(char) * (x + 1));
 		if (maze[i] == NULL)
 			exit(84);
 		maze[i][x] = '\0';
